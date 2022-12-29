@@ -56,6 +56,21 @@ include_once "test.logic.php";
                 <td class="<?= $isQueryStringCorrect ? "green" : "red" ?>">
                 </td>
             </tr>
+            <tr>
+                <td>Should arrayKeysExists retrieve false for empty keys array</td>
+                <td class="<?= $isEmptyArrayRetrieveFalse ? "green" : "red" ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>Should arrayKeysExists retrieve false for array not contains keys value</td>
+                <td class="<?= $isArrayKeysExistsCorrect1 ? "green" : "red" ?>">
+                </td>
+            </tr>
+            <tr>
+                <td>Should arrayKeysExists retrieve true for array contains all keys value</td>
+                <td class="<?= $isArrayKeysExistsCorrect2 ? "green" : "red" ?>">
+                </td>
+            </tr>
         </tbody>
     </table>
 </body>

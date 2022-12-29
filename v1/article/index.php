@@ -41,12 +41,8 @@ if ($METHOD == "POST"){
     echo json_encode($result);
 }
 
-if ($METHOD == "GET" && count($TAB_PARAMS) > 1 && 
-        array_key_exists("libelle",$TAB_PARAMS) &&
-        array_key_exists("qte",$TAB_PARAMS) && 
-        array_key_exists("prix",$TAB_PARAMS) &&
-        array_key_exists("img_link",$TAB_PARAMS) &&
-        array_key_exists("commentaire",$TAB_PARAMS)){
+$ARTICLE_FIELDS = array("libelle","qte","prix","img_link","commentaire");
+if ($METHOD == "GET" && count($TAB_PARAMS) > 1 && arrayKeysExists($ARTICLE_FIELDS, $TAB_PARAMS)){
     $id = $TAB_PARAMS["id"];
     $lib = $TAB_PARAMS["libelle"];
     $qte = $TAB_PARAMS["qte"];
