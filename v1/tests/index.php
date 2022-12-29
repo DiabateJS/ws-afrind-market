@@ -1,5 +1,6 @@
 <?php
-include_once "test.logic.php";
+include_once "array.util.test.php";
+include_once "request.util.test.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
