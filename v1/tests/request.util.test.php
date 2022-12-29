@@ -1,40 +1,57 @@
 <?php
 include_once "../utils/request.util.php";
 
-$EMPTY_REQUEST = array();
-$getRequestForEmpty = RequestManager::getRequestMethod($EMPTY_REQUEST);
-$GET_REQUEST = array(
-    "REQUEST_METHOD" => "GET"
-);
-$getRequestForGet = RequestManager::getRequestMethod($GET_REQUEST);
-$POST_REQUEST = array(
-    "REQUEST_METHOD" => "POST"
-);
-$getRequestForPost = RequestManager::getRequestMethod($POST_REQUEST);
-$isGetRequestCorrect = $getRequestForEmpty == "" && $getRequestForGet == "GET"
-                         && $getRequestForPost == "POST";
+function isGetRequestCorrect(){
+    $EMPTY_REQUEST = array();
 
-$emptyQueryString = "";
-$isTableFromEmptyQueryStringCorrect = is_array(RequestManager::queryStringToTable($emptyQueryString));
+    $GET_REQUEST = array(
+        "REQUEST_METHOD" => "GET"
+    );
 
-$queryStringWithOneKeyValue = "cle=valeur";
-$res1 = RequestManager::queryStringToTable($queryStringWithOneKeyValue);
-$isTableFromQueryString1Correct = is_array($res1) && count($res1) == 1 &&
-                                  $res1["cle"] == "valeur";
+    $POST_REQUEST = array(
+        "REQUEST_METHOD" => "POST"
+    );
 
-$queryStringWithManyKeysValues = "cle1=valeur1&cle2=valeur2";
-$res2 = RequestManager::queryStringToTable($queryStringWithManyKeysValues); 
-$isTableFromQueryString2Correct = is_array($res2) && count($res2) == 2 &&
-                                  $res2["cle1"] == "valeur1" &&
-                                  $res2["cle2"] == "valeur2";                                
+    $getRequestForEmpty = RequestManager::getRequestMethod($EMPTY_REQUEST);
+    $getRequestForGet = RequestManager::getRequestMethod($GET_REQUEST);
+    
+    $getRequestForPost = RequestManager::getRequestMethod($POST_REQUEST);
+    return $getRequestForEmpty == "" && $getRequestForGet == "GET"
+                             && $getRequestForPost == "POST";
+}
 
-$res3 = RequestManager::getQueryString($EMPTY_REQUEST);
-$isQueryStringForEmptyRequestCorrect = $res3 == "";
+function isTableFromEmptyQueryStringCorrect(){
+    $emptyQueryString = "";
+    return is_array(RequestManager::queryStringToTable($emptyQueryString));
+}
 
-$QUERY_STRING_REQUEST = array(
-    "QUERY_STRING" => "cle=valeur"
-);
-$res4 = RequestManager::getQueryString($QUERY_STRING_REQUEST);
-$isQueryStringCorrect = is_string($res4) && strlen($res4) > 0 ;
+function isTableFromQueryString1Correct(){
+    $queryStringWithOneKeyValue = "cle=valeur";
+    $res = RequestManager::queryStringToTable($queryStringWithOneKeyValue);
+    return is_array($res) && count($res) == 1 &&
+            $res["cle"] == "valeur";
+}
+
+function isTableFromQueryString2Correct(){
+    $queryStringWithManyKeysValues = "cle1=valeur1&cle2=valeur2";
+    $res = RequestManager::queryStringToTable($queryStringWithManyKeysValues); 
+    return is_array($res) && count($res) == 2 &&
+            $res["cle1"] == "valeur1" &&
+            $res["cle2"] == "valeur2";
+}                                
+
+function isQueryStringForEmptyRequestCorrect(){
+    $EMPTY_REQUEST = array();
+    $res = RequestManager::getQueryString($EMPTY_REQUEST);
+    return $res == "";
+}
+
+function isQueryStringCorrect(){
+    $QUERY_STRING_REQUEST = array(
+        "QUERY_STRING" => "cle=valeur"
+    );
+    $res = RequestManager::getQueryString($QUERY_STRING_REQUEST);
+    return is_string($res) && strlen($res) > 0 ;
+}
 
 ?>

@@ -30,32 +30,32 @@ include_once "request.util.test.php";
         <tbody>
             <tr>
                 <td>Should Get Request Method is correct</td>
-                <td class="<?= $isGetRequestCorrect ? "green" : "red" ?>">
+                <td class="<?= isGetRequestCorrect() ? "green" : "red" ?>">
                 </td>
             </tr>
             <tr>
                 <td>Should table retrieve by empty query string is empty</td>
-                <td class="<?= $isTableFromEmptyQueryStringCorrect ? "green" : "red" ?>">
+                <td class="<?= isTableFromEmptyQueryStringCorrect() ? "green" : "red" ?>">
                 </td>
             </tr>
             <tr>
                 <td>Should table retrieve by query string 'cle=valeur' is correct</td>
-                <td class="<?= $isTableFromQueryString1Correct ? "green" : "red" ?>">
+                <td class="<?= isTableFromQueryString1Correct() ? "green" : "red" ?>">
                 </td>
             </tr>
             <tr>
                 <td>Should table retrieve by query string 'cle1=valeur1&cle2=valeur2' is correct</td>
-                <td class="<?= $isTableFromQueryString2Correct ? "green" : "red" ?>">
+                <td class="<?= isTableFromQueryString2Correct() ? "green" : "red" ?>">
                 </td>
             </tr>
             <tr>
                 <td>Should getQueryString for empty request is empty</td>
-                <td class="<?= $isQueryStringForEmptyRequestCorrect ? "green" : "red" ?>">
+                <td class="<?= isQueryStringForEmptyRequestCorrect() ? "green" : "red" ?>">
                 </td>
             </tr>
             <tr>
                 <td>Should getQueryString is correct</td>
-                <td class="<?= $isQueryStringCorrect ? "green" : "red" ?>">
+                <td class="<?= isQueryStringCorrect() ? "green" : "red" ?>">
                 </td>
             </tr>
         </tbody>
@@ -71,17 +71,17 @@ include_once "request.util.test.php";
         <tbody>
             <tr>
                 <td>Should arrayKeysExists retrieve false for empty keys array</td>
-                <td class="<?= $isEmptyArrayRetrieveFalse ? "green" : "red" ?>">
+                <td class="<?= isEmptyArrayRetrieveFalse() ? "green" : "red" ?>">
                 </td>
             </tr>
             <tr>
                 <td>Should arrayKeysExists retrieve false for array not contains keys value</td>
-                <td class="<?= $isArrayKeysExistsCorrect1 ? "green" : "red" ?>">
+                <td class="<?= isArrayKeysExistsCorrect1() ? "green" : "red" ?>">
                 </td>
             </tr>
             <tr>
                 <td>Should arrayKeysExists retrieve true for array contains all keys value</td>
-                <td class="<?= $isArrayKeysExistsCorrect2 ? "green" : "red" ?>">
+                <td class="<?= isArrayKeysExistsCorrect2() ? "green" : "red" ?>">
                 </td>
             </tr>
         </tbody>
