@@ -1,12 +1,13 @@
 <?php
-include_once "logic.php";
 include_once "../models/article.php";
 include_once "../models/articles.manager.php";
 include_once "../models/result.model.php";
+include_once "../utils/request.util.php";
+include_once "../utils/array.util.php";
 
-$METHOD = getRequestMethod($_SERVER); 
-$QUERY_STRING = getQueryString($_SERVER);
-$TAB_PARAMS = queryStringToTable($QUERY_STRING);
+$METHOD = RequestManager::getRequestMethod($_SERVER); 
+$QUERY_STRING = RequestManager::getQueryString($_SERVER);
+$TAB_PARAMS = RequestManager::queryStringToTable($QUERY_STRING);
 
 $result = null;
 
@@ -42,7 +43,7 @@ if ($METHOD == "POST"){
 }
 
 $ARTICLE_FIELDS = array("libelle","qte","prix","img_link","commentaire");
-if ($METHOD == "GET" && count($TAB_PARAMS) > 1 && arrayKeysExists($ARTICLE_FIELDS, $TAB_PARAMS)){
+if ($METHOD == "GET" && count($TAB_PARAMS) > 1 && ArrayManager::arrayKeysExists($ARTICLE_FIELDS, $TAB_PARAMS)){
     $id = $TAB_PARAMS["id"];
     $lib = $TAB_PARAMS["libelle"];
     $qte = $TAB_PARAMS["qte"];
