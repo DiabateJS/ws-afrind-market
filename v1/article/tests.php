@@ -18,6 +18,7 @@ include_once "test.logic.php";
     <title>Test article module</title>
 </head>
 <body>
+    <h3>Test Request Manager</h3>
     <table border="1">
         <thead>
             <tr>
@@ -56,6 +57,17 @@ include_once "test.logic.php";
                 <td class="<?= $isQueryStringCorrect ? "green" : "red" ?>">
                 </td>
             </tr>
+        </tbody>
+    </table>
+    <h3>Test Array Manager</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Test Description</th>
+                <th>Resultat</th>
+            </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td>Should arrayKeysExists retrieve false for empty keys array</td>
                 <td class="<?= $isEmptyArrayRetrieveFalse ? "green" : "red" ?>">
