@@ -10,16 +10,12 @@ $QUERY_STRING = RequestManager::getQueryString($_SERVER);
 $TAB_PARAMS = RequestManager::queryStringToTable($QUERY_STRING);
 
 $result = null;
+$articleManager = new ArticleManager();
 
 if ($METHOD == "GET" && count($TAB_PARAMS) == 1 && array_key_exists("id",$TAB_PARAMS)){
     $id = $TAB_PARAMS["id"];
-    $article_recherche = null;
+    $article_recherche = $articleManager->find($id);
     $result = new Result();
-    for ($i = 0 ; $i < count($articles) ; $i++){
-        if ($articles[$i]->id == $id){
-            $article_recherche = $articles[$i];
-        }
-    }
     if ($article_recherche != null){
         $result->data = $article_recherche;
     }
@@ -36,9 +32,9 @@ if ($METHOD == "POST"){
 
     $article_new = new Article($lib,$qte,$prix,$img,$com);
     $article_new->id = $id;
-    $articles[] = $article_new;
+    $articleManager->add($article_new);
     $result = new Result();
-    $result->data = $articles;
+    $result->data = $articleManager->getArticles();
     echo json_encode($result);
 }
 
@@ -52,9 +48,9 @@ if ($METHOD == "GET" && count($TAB_PARAMS) > 1 && ArrayManager::arrayKeysExists(
     $com = $TAB_PARAMS["commentaire"];
     $article_new = new Article($lib,$qte,$prix,$img,$com);
     $article_new->id = $id;
-    $articles[] = $article_new;
+    $articleManager->add($article_new);
     $result = new Result();
-    $result->data = $articles;
+    $result->data = $articleManager->getArticles();
     echo json_encode($result);
 }
 

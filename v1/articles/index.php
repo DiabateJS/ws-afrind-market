@@ -6,10 +6,11 @@ include_once "../utils/request.util.php";
 
 $METHOD = RequestManager::getRequestMethod($_SERVER);
 $result = null;
+$articleManager = new ArticleManager();
 
 if ($METHOD == "GET"){
     $result = new Result();
-    $result->data = $articles;
+    $result->data = $articleManager->getArticles();
     echo json_encode($result);
 }
 
