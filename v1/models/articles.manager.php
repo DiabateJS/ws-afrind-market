@@ -2,7 +2,7 @@
 include_once "article.model.php";
 
 class ArticleManager {
-    
+
     private $articles;
 
     function __construct()
@@ -57,11 +57,9 @@ class ArticleManager {
     }
 
     public function delete($id){
-        $article = null;
         $indice = -1;
         for ($i = 0 ; $i < count($this->articles) ; $i++){
             if ($this->articles[$i]->id == $id){
-                $article = $this->articles[$i];
                 $indice = $i;
             }
         }
