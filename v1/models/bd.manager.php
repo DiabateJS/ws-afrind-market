@@ -48,8 +48,7 @@ class BdManager {
     $res = new Result();
     try {
 		$stmt = $this->_pdo->prepare($sql);
-		$result = $stmt->execute($dicoParam);
-        $res->data = $result;
+		$stmt->execute($dicoParam);
 	}
 	catch(Exception $e)
 	{

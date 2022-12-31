@@ -9,8 +9,7 @@ $result = null;
 $articleManager = new ArticleManager();
 
 if ($METHOD == "GET"){
-    $result = new Result();
-    $result->data = $articleManager->getArticles();
+    $result = $articleManager->getArticles();
     echo json_encode($result);
 }
 

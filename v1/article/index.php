@@ -15,14 +15,7 @@ $articleManager = new ArticleManager();
 if ($METHOD == "GET" && count($TAB_PARAMS) == 1 && array_key_exists("id",$TAB_PARAMS)){
     $id = $TAB_PARAMS["id"];
     $article_recherche = $articleManager->find($id);
-    $result = new Result();
-    if ($article_recherche != null){
-        $result->data = $article_recherche;
-    }else{
-        $articleManager->delete($article_recherche);
-        $result->data = $articleManager->getArticles();
-    }
-    echo json_encode($result);
+    echo json_encode($article_recherche);
 }
 
 if ($METHOD == "POST"){
@@ -35,10 +28,8 @@ if ($METHOD == "POST"){
 
     $article_new = new Article($lib,$qte,$prix,$img,$com);
     $article_new->id = $id;
-    $articleManager->add($article_new);
-    $result = new Result();
-    $result->data = $articleManager->getArticles();
-    echo json_encode($result);
+    $res = $articleManager->add($article_new);
+    echo json_encode($res);
 }
 
 $ARTICLE_FIELDS = array("libelle","qte","prix","img_link","commentaire");
@@ -49,17 +40,10 @@ if ($METHOD == "GET" && count($TAB_PARAMS) > 1 && ArrayManager::arrayKeysExists(
     $prix = $TAB_PARAMS["prix"];
     $img = $TAB_PARAMS["img_link"];
     $com = $TAB_PARAMS["commentaire"];
-    $article = $articleManager->find($id);
-    if ($article == null){
-        $article_new = new Article($lib,$qte,$prix,$img,$com);
-        $article_new->id = $id;
-        $articleManager->add($article_new);
-    }else{
-        $articleManager->update($id, $article);
-    }
-    $result = new Result();
-    $result->data = $articleManager->getArticles();
-    echo json_encode($result);
+    $article_new = new Article($lib,$qte,$prix,$img,$com);
+    $article_new->id = $id;
+    $res = $articleManager->add($article_new);
+    echo json_encode($res);
 }
 
 if ($METHOD == "PUT"){
@@ -72,18 +56,14 @@ if ($METHOD == "PUT"){
 
     $article = new Article($lib,$qte,$prix,$img,$com);
     $article->id = $id;
-    $articleManager->update($id, $article);
-    $result = new Result();
-    $result->data = $articleManager->getArticles();
-    echo json_encode($result);
+    $res = $articleManager->update($id, $article);
+    echo json_encode($articleManager->getArticles());
 }
 
 if ($METHOD == "DELETE"){
     $id = $TAB_PARAMS["id"];
-    $articleManager->delete($id);
-    $result = new Result();
-    $result->data = $articleManager->getArticles();
-    echo json_encode($result);
+    $res = $articleManager->delete($id);
+    echo json_encode($articleManager->getArticles());
 }
 
 ?>
