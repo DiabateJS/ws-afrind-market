@@ -2,10 +2,12 @@
 include_once "array.util.test.php";
 include_once "request.util.test.php";
 include_once "util.test.php";
+include_once "bd.manager.test.php";
 
 $requestUtilTest = new RequestUtilTest();
 $arrayTest = new ArrayUtilTest();
 $utilTest = new UtilTest();
+$bdManagerTest = new BdManagerTest();
 
 ?>
 <!DOCTYPE html>
@@ -29,6 +31,7 @@ $utilTest = new UtilTest();
         echo $requestUtilTest->displayTests();
         echo $arrayTest->displayTests();
         echo $utilTest->displayTests();
+        echo $bdManagerTest->displayTests();
     ?>
 </body>
 </html>
